@@ -3,11 +3,11 @@ project:
 
 book:
   title: "Building Reproducible Analytical Pipelines"
-  subtitle: "Master of Data Science, University of Luxembourg - 2023"
+  subtitle: "Master of Data Science, University of Luxembourg - 2024"
   author: "Bruno Rodrigues"
-  date: "2023-11-20"
+  date: "2024-11-04"
   search: true
-  repo-url: "https://github.com/b-rodrigues/rap4mads_2023"
+  repo-url: "https://github.com/b-rodrigues/rap4mads_2024"
   repo-actions: [edit]
   sharing: [twitter, facebook]
   downloads: [pdf, epub]
@@ -36,7 +36,7 @@ format:
     lang:
       en-GB
     date:
-      "2023-11-20"
+      "2024-11-04"
     css:
       epub.css
   html:
