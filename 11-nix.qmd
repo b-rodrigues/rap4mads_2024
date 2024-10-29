@@ -165,15 +165,23 @@ a package I wrote, called `{rix}`, can help you.
 
 ## The {rix} package
 
-{rix} is an R package that provides functions to help you write Nix expressions: these expressions can then be used by the Nix package manager to
-build completely reproducible development environments. These environments can be used for interactive data analysis or running pipelines in a CI/CD environment. 
-Environments built with Nix contain R and all the required packages that you need for your project: there are currently more than 80.000 pieces of software 
-available through the Nix package manager, including the entirety of CRAN and Bioconductor packages. The Nix package manager is extremely powerful: not only it handles 
-all the dependencies of any package extremely well, it is also possible with it to reproduce environments containing old releases of software. It is thus possible to build 
-environments that contain R version 4.0.0 (for example) to run an old project originally developed on that version of R.
+{rix} is an R package that provides functions to help you write Nix expressions:
+these expressions can then be used by the Nix package manager to build
+completely reproducible development environments. These environments can be used
+for interactive data analysis or running pipelines in a CI/CD environment.
+Environments built with Nix contain R and all the required packages that you
+need for your project: there are currently more than 80.000 pieces of software
+available through the Nix package manager, including the entirety of CRAN and
+Bioconductor packages. The Nix package manager is extremely powerful: not only
+it handles all the dependencies of any package extremely well, it is also
+possible with it to reproduce environments containing old releases of software.
+It is thus possible to build environments that contain R version 4.0.0 (for
+example) to run an old project originally developed on that version of R.
 
-First, you need to install the Nix package manager on your system. For this, we are going to use the installer from [Determinate Systems](https://determinate.systems/posts/determinate-nix-installer).
-Simply run the following command in a terminal:
+First, you need to install the Nix package manager on your system. For this, we
+are going to use the installer from [Determinate
+Systems](https://determinate.systems/posts/determinate-nix-installer). Simply
+run the following command in a terminal:
 
 ```
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
@@ -182,8 +190,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 If you wish to uninstall Nix, run the same command. Then, if you already have R installed on your system, you can install the `{rix}` package using:
 
 ```{r, eval = F}
-install.packages("rix", repos = c("https://b-rodrigues.r-universe.dev",
-  "https://cloud.r-project.org"))
+install.packages("rix")
 ```
 
 From there, you can start a new R session and try out `{rix}` like so:
@@ -198,24 +205,36 @@ rix(r_ver = "latest",
     overwrite = TRUE)
 ```
 
-this will create a `default.nix` file in the project root. Open a terminal where `default.nix` is, and run `nix-build`. This will create a file called `result` in the same folder.
-You can now *drop* into a shell with the specified packages using `nix-shell`.
+this will create a `default.nix` file in the project root. Open a terminal where
+`default.nix` is, and run `nix-build`. This will create a file called `result`
+in the same folder. You can now *drop* into a shell with the specified packages
+using `nix-shell`.
 
 ## Running a pipeline with Nix
 
-Once you’ve built and environment, and "dropped" into it, it’s possible to run R by simply typing `R` in the console. If instead you’ve installed an IDE, you can start
-is as well by typing the IDE name’s. You can then work interactively with your data. But it is also possible to run a command from that environment. For instance,
-if you have a `{targets}` pipeline that you wish to run in an environment built with Nix, you could run the following command (inside the folder containing the
-`default.nix` file):
+Once you’ve built and environment, and "dropped" into it, it’s possible to run R
+by simply typing `R` in the console. If instead you’ve installed an IDE, you can
+start is as well by typing the IDE name’s. You can then work interactively with
+your data. But it is also possible to run a command from that environment. For
+instance, if you have a `{targets}` pipeline that you wish to run in an
+environment built with Nix, you could run the following command (inside the
+folder containing the `default.nix` file):
 
 ```
 nix-shell default.nix --run "Rscript -e 'targets::tar_make()'"
 ```
 
-This will run the pipeline and build the output. If the output is a rendered Quarto document for instance, you will then see the document appear in the specified output folder.
+This will run the pipeline and build the output. If the output is a rendered
+Quarto document for instance, you will then see the document appear in the
+specified output folder.
 
 ## CI/CD with Nix
 
-It is also possible to run a `{targets}` pipeline on Github Actions quite easily. Run `rix::tar_nix_ga()` to add the file `.github/workflows/run-pipeline.yaml` to your project. 
-Now, each time you push changes to your Github repository, the pipeline will be executed. Don’t forget to give read and write rights to the Github Actions bot. You will find
-the outputs of the pipeline in the `targets-run` branch of your repository. See this [repository](https://github.com/b-rodrigues/chronicler_targets_pipeline) for an example.
+It is also possible to run a `{targets}` pipeline on Github Actions quite
+easily. Run `rix::tar_nix_ga()` to add the file
+`.github/workflows/run-pipeline.yaml` to your project. Now, each time you push
+changes to your Github repository, the pipeline will be executed. Don’t forget
+to give read and write rights to the Github Actions bot. You will find the
+outputs of the pipeline in the `targets-run` branch of your repository. See this
+[repository](https://github.com/b-rodrigues/chronicler_targets_pipeline) for an
+example.
