@@ -14,8 +14,8 @@ knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 60), tidy = TRUE)
 <img src="/img/cover.png" title = "Cover image created with Dall-e. The prompt was 'Roman engineer building a pipeline in the style of ancient roman art'. The result doesn't really show that, but I thought it looked nice." width="70%">
 </div>
 
-*This is the 2023 edition of the course. If you're looking for the 2022 edition,
-you can click [here](https://b-rodrigues.github.io/rap4mads/)*
+*This is the 2024 edition of the course. If you're looking for the 2023 edition,
+you can click [here](https://b-rodrigues.github.io/rap4mads_2023/)*
 
 What’s new:
 
@@ -30,13 +30,13 @@ that are discussed in greater detail in the book.*
 
 ## Schedule
 
-- 2023/11/27, Introduction to reproducibility and functional programming
-- 2023/11/28, Version control with Git, Package development and unit testing
-- 2023/12/05, Build automation
-- 2023/12/11, Literate programming and Shiny
-- 2023/12/12, Self-contained pipelines with Docker
-- 2023/12/18, CI/CD with Github Actions
-- 2023/12/19, Reproducibility with Nix
+- 2024/11/04, Introduction to reproducibility and functional programming
+- 2024/11/11, Version control with Git, Package development and unit testing
+- 2024/12/02, Build automation
+- 2024/12/05, Literate programming and Shiny
+- 2024/12/09, Self-contained pipelines with Docker
+- 2024/12/16, CI/CD with Github Actions
+- 2024/12/19, Reproducibility with Nix
 
 ## Reproducible analytical pipelines?
 
@@ -157,8 +157,8 @@ have access to almost 20'000 packages (as of October 2023) to:
 
 It's not just about what the packages provide: installing R and its packages and
 dependencies is rarely frustrating, which is not the case with Python (Python 2
-vs Python 3, `pip` vs `conda`, `pyenv` vs `venv`..., dependency hell is a real
-place full of snakes)
+vs Python 3, `pip` vs `conda`, `pyenv` vs `venv` vs `uv`, ..., dependency hell
+is a real place full of snakes)
 
 <div style="text-align:center;">
 ```{r, echo = F}
@@ -166,13 +166,12 @@ knitr::include_graphics("img/dependency_hell.png")
 ```
 </div>
 
-That doesn’t mean that R does not have any issues. Quite the
-contrary, R sometimes behaves in seemingly truly bizarre ways (as an example,
-try running `nchar("1000000000")` and then `nchar(1000000000)` and try to make
-sense of it). To know more about such bizarre behaviour, I recommend you read
-*The R Inferno* (linked at the end of this chapter). So, yes, R is far from
-perfect, but it sucks less than the alternatives (again, in my absolutely
-objective opinion).
+That doesn’t mean that R does not have any issues. Quite the contrary, R
+sometimes behaves in seemingly truly bizarre ways (as an example, try running
+`nchar("1000000000")` and then `nchar(1000000000)` and try to make sense of it).
+To know more about such bizarre behaviour, I recommend you read *The R Inferno*
+(linked at the end of this chapter). So, yes, R is far from perfect, but it
+sucks less than the alternatives (again, in my absolutely objective opinion).
 
 ```{webr-r}
 nchar("1000000000")
