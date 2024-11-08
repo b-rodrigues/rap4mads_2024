@@ -24,7 +24,7 @@ they work in a certain way, they also force you to work in a more structured way
 
 As an introduction, there really is not a better source than the `{targets}` manual itself, and in
 particular the [walkthrough section](https://books.ropensci.org/targets/walkthrough.html). After
-reading this section, we have the basic knowledge to build our first pipeline. The goal of this
+reading this section, we have the basic ledge to build our first pipeline. The goal of this
 pipeline will be to simply create a plot using the unemployment data we've been working on. Let's
 create a new project in RStudio, but make sure that you check the following boxes:
 
@@ -753,7 +753,7 @@ make_plot <- function(data){
 }
 ```
 
-If you know save the script, and check the pipeline with `tar_visnetwork()`, you will see that some targets are not out of date:
+If you now save the script, and check the pipeline with `tar_visnetwork()`, you will see that some targets are not out of date:
 
 
 ```{r, echo = F}
@@ -843,7 +843,7 @@ knitr::include_graphics("img/calendar.png")
 </div>
 
 What do you do if you need to run code with older packages, but the original developer did not use `{renv}`?
-In such cases it is still possible to run that code with older packages. What you would need to know however 
+In such cases it is still possible to run that code with older packages. What you would need to  however 
 is the rough date where this code was written. Let’s say that you want to run an old script from 2019, and
 you want to make sure that the results you will obtain are as close, if not absolutely equal, to the results
 you would have obtained then. Let’s further assume that the script was last modified on October 31st 2019.
