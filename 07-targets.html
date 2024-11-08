@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="build-automation-with-r" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="build-automation-with-r"><span class="header-section-number">6.2</span> Build automation with R</h2>
-<p>As an introduction, there really is not a better source than the <code>{targets}</code> manual itself, and in particular the <a href="https://books.ropensci.org/targets/walkthrough.html">walkthrough section</a>. After reading this section, we have the basic knowledge to build our first pipeline. The goal of this pipeline will be to simply create a plot using the unemployment data we’ve been working on. Let’s create a new project in RStudio, but make sure that you check the following boxes:</p>
+<p>As an introduction, there really is not a better source than the <code>{targets}</code> manual itself, and in particular the <a href="https://books.ropensci.org/targets/walkthrough.html">walkthrough section</a>. After reading this section, we have the basic ledge to build our first pipeline. The goal of this pipeline will be to simply create a plot using the unemployment data we’ve been working on. Let’s create a new project in RStudio, but make sure that you check the following boxes:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -934,7 +934,7 @@ Do you want to proceed? [y/N]: </code></pre>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Unemployement for "</span>, <span class="fu">paste</span>(<span class="fu">unique</span>(data<span class="sc">$</span>place_name), <span class="at">collapse =</span> <span class="st">", "</span>)))</span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you know save the script, and check the pipeline with <code>tar_visnetwork()</code>, you will see that some targets are not out of date:</p>
+<p>If you now save the script, and check the pipeline with <code>tar_visnetwork()</code>, you will see that some targets are not out of date:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -1001,7 +1001,7 @@ Do you want to proceed? [y/N]: </code></pre>
 </div>
 </div>
 </div>
-<p>What do you do if you need to run code with older packages, but the original developer did not use <code>{renv}</code>? In such cases it is still possible to run that code with older packages. What you would need to know however is the rough date where this code was written. Let’s say that you want to run an old script from 2019, and you want to make sure that the results you will obtain are as close, if not absolutely equal, to the results you would have obtained then. Let’s further assume that the script was last modified on October 31st 2019.</p>
+<p>What do you do if you need to run code with older packages, but the original developer did not use <code>{renv}</code>? In such cases it is still possible to run that code with older packages. What you would need to however is the rough date where this code was written. Let’s say that you want to run an old script from 2019, and you want to make sure that the results you will obtain are as close, if not absolutely equal, to the results you would have obtained then. Let’s further assume that the script was last modified on October 31st 2019.</p>
 <p>You can rerun this script with a library that looks like one from that same date using a package made by Microsoft, called <code>{checkpoint}</code>. This package helps install packages from their repository, MRAN (which was already mentioned before), and is quite easy to use. Simply add the following line at the top of the script:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkpoint</span>(<span class="st">"2019-10-31"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
