@@ -14,7 +14,7 @@
     "href": "index.html#schedule",
     "title": "Building Reproducible Analytical Pipelines",
     "section": "Schedule",
-    "text": "Schedule\n\n2024/11/04, Introduction to reproducibility and functional programming\n2024/11/11, Version control with Git, Package development and unit testing\n2024/12/02, Build automation\n2024/12/05, Literate programming and Shiny\n2024/12/09, Self-contained pipelines with Docker\n2024/12/16, CI/CD with Github Actions\n2024/12/19, Reproducibility with Nix",
+    "text": "Schedule\n\n2024/11/04 - 4 hours, Introduction to reproducibility and functional programming\n2024/11/11 - 4 hours, Version control with Git, Package development and unit testing\n2024/11/14 - 4 hours, Build automation\n2024/12/02 - 4 hours, Literate programming and Shiny\n2024/12/05 - 2 hours, Self-contained pipelines with Docker\n2024/12/09 - 5 hours, CI/CD with Github Actions\n2024/12/16 - 4 hours, Reproducibility with Nix\n2024/12/19 - 3 hours, Wrap-up",
     "crumbs": [
       "Introduction"
     ]
