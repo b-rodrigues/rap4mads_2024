@@ -834,31 +834,6 @@ targets::tar_make()
 The data product (or output) from this pipeline is the `index.html` file that appeared on the root folder
 of your project.
 
-## Running any code with older packages
-
-<div style="text-align:center;">
-```{r, echo = F}
-knitr::include_graphics("img/calendar.png")
-```
-</div>
-
-What do you do if you need to run code with older packages, but the original developer did not use `{renv}`?
-In such cases it is still possible to run that code with older packages. What you would need to  however 
-is the rough date where this code was written. Let’s say that you want to run an old script from 2019, and
-you want to make sure that the results you will obtain are as close, if not absolutely equal, to the results
-you would have obtained then. Let’s further assume that the script was last modified on October 31st 2019.
-
-You can rerun this script with a library that looks like one from that same date using a package made
-by Microsoft, called `{checkpoint}`. This package helps install packages from their repository, MRAN 
-(which was already mentioned before), and is quite easy to use. Simply add the following line at the top 
-of the script:
-
-```{r, eval = F}
-checkpoint("2019-10-31")
-```
-
-You can read more about checkpoint [here](https://cran.microsoft.com/web/packages/checkpoint/vignettes/checkpoint.html).
-
 ## Why we need more
 
 While `{renv}` is a huge step towards the right direction, there are at least four problems with it:
@@ -866,9 +841,9 @@ While `{renv}` is a huge step towards the right direction, there are at least fo
 - `{renv}` doesn’t do anything about R itself: a pipeline made to run on R version 3 (for example) could still produce different results when run on R 4, even if the packages are the same. In practice, however, R is quite stable, and breaking changes between versions are very rare; most code is retrocompatible for many versions.
 - `{renv}` doesn’t do anything about the operating system the pipeline is running on. Results can even be different between [different versions of the same operating system](https://www.frontiersin.org/articles/10.3389/fninf.2015.00012/full), but in practice, that should only affect you in very specific businesses were very high precision floating point arithmetic is required.
 - `{renv}` can sometimes fail to install packages. I tried running William Landau’s demo pipeline on two computers, one running OpenSuse Linux and one running Windows 10. It ran successfully on Linux, but not on Windows.
-- `{renv}` relies on MRAN and CRAN. While it is unlikely that CRAN will ever be offline, as there are many, many mirrors around the world, [and it could be argued that the longer CRAN is online, the likelier it is it’ll stay online](https://en.wikipedia.org/wiki/Lindy_effect), the same cannot (yet) be said from MRAN. However, `{renv}` could be made to rely entirely on CRAN, so this last point might not be an issue. 
+- `{renv}` relies on CRAN archives staying online. While it is very unlikely that CRAN will ever be offline, as there are many, many mirrors around the world, [and it could be argued that the longer CRAN is online, the likelier it is it’ll stay online](https://en.wikipedia.org/wiki/Lindy_effect), for very mission critical projects it might be needed to host your own mirror.
 
-We are going to solve these issues in chapter 9, but for now, let’s be grateful for `{renv}`, `{targets}` and CRAN (and MRAN), for they allow us to quite easily 
+We are going to solve these issues in chapter 9, but for now, let’s be grateful for `{renv}`, `{targets}` and CRAN, for they allow us to quite easily 
 build (almost) reproducible pipelines quite easily! In the next chapter, we will continue building pipelines and build our very first data products.
 
 ## Further reading
