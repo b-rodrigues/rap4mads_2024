@@ -460,21 +460,11 @@
     ]
   },
   {
-    "objectID": "07-targets.html#running-any-code-with-older-packages",
-    "href": "07-targets.html#running-any-code-with-older-packages",
-    "title": "6  Setting up pipelines with {targets}",
-    "section": "6.6 Running any code with older packages",
-    "text": "6.6 Running any code with older packages\n\n\n\n\n\n\n\n\n\n\n\nWhat do you do if you need to run code with older packages, but the original developer did not use {renv}? In such cases it is still possible to run that code with older packages. What you would need to however is the rough date where this code was written. Let’s say that you want to run an old script from 2019, and you want to make sure that the results you will obtain are as close, if not absolutely equal, to the results you would have obtained then. Let’s further assume that the script was last modified on October 31st 2019.\nYou can rerun this script with a library that looks like one from that same date using a package made by Microsoft, called {checkpoint}. This package helps install packages from their repository, MRAN (which was already mentioned before), and is quite easy to use. Simply add the following line at the top of the script:\n\ncheckpoint(\"2019-10-31\")\n\nYou can read more about checkpoint here.",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Setting up pipelines with `{targets}`</span>"
-    ]
-  },
-  {
     "objectID": "07-targets.html#why-we-need-more",
     "href": "07-targets.html#why-we-need-more",
     "title": "6  Setting up pipelines with {targets}",
-    "section": "6.7 Why we need more",
-    "text": "6.7 Why we need more\nWhile {renv} is a huge step towards the right direction, there are at least four problems with it:\n\n{renv} doesn’t do anything about R itself: a pipeline made to run on R version 3 (for example) could still produce different results when run on R 4, even if the packages are the same. In practice, however, R is quite stable, and breaking changes between versions are very rare; most code is retrocompatible for many versions.\n{renv} doesn’t do anything about the operating system the pipeline is running on. Results can even be different between different versions of the same operating system, but in practice, that should only affect you in very specific businesses were very high precision floating point arithmetic is required.\n{renv} can sometimes fail to install packages. I tried running William Landau’s demo pipeline on two computers, one running OpenSuse Linux and one running Windows 10. It ran successfully on Linux, but not on Windows.\n{renv} relies on MRAN and CRAN. While it is unlikely that CRAN will ever be offline, as there are many, many mirrors around the world, and it could be argued that the longer CRAN is online, the likelier it is it’ll stay online, the same cannot (yet) be said from MRAN. However, {renv} could be made to rely entirely on CRAN, so this last point might not be an issue.\n\nWe are going to solve these issues in chapter 9, but for now, let’s be grateful for {renv}, {targets} and CRAN (and MRAN), for they allow us to quite easily build (almost) reproducible pipelines quite easily! In the next chapter, we will continue building pipelines and build our very first data products.",
+    "section": "6.6 Why we need more",
+    "text": "6.6 Why we need more\nWhile {renv} is a huge step towards the right direction, there are at least four problems with it:\n\n{renv} doesn’t do anything about R itself: a pipeline made to run on R version 3 (for example) could still produce different results when run on R 4, even if the packages are the same. In practice, however, R is quite stable, and breaking changes between versions are very rare; most code is retrocompatible for many versions.\n{renv} doesn’t do anything about the operating system the pipeline is running on. Results can even be different between different versions of the same operating system, but in practice, that should only affect you in very specific businesses were very high precision floating point arithmetic is required.\n{renv} can sometimes fail to install packages. I tried running William Landau’s demo pipeline on two computers, one running OpenSuse Linux and one running Windows 10. It ran successfully on Linux, but not on Windows.\n{renv} relies on CRAN archives staying online. While it is very unlikely that CRAN will ever be offline, as there are many, many mirrors around the world, and it could be argued that the longer CRAN is online, the likelier it is it’ll stay online, for very mission critical projects it might be needed to host your own mirror.\n\nWe are going to solve these issues in chapter 9, but for now, let’s be grateful for {renv}, {targets} and CRAN, for they allow us to quite easily build (almost) reproducible pipelines quite easily! In the next chapter, we will continue building pipelines and build our very first data products.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Setting up pipelines with `{targets}`</span>"
     ]
@@ -483,8 +473,8 @@
     "objectID": "07-targets.html#further-reading",
     "href": "07-targets.html#further-reading",
     "title": "6  Setting up pipelines with {targets}",
-    "section": "6.8 Further reading",
-    "text": "6.8 Further reading\n\nThe {targets} manual\nThe {renv} website",
+    "section": "6.7 Further reading",
+    "text": "6.7 Further reading\n\nThe {targets} manual\nThe {renv} website",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Setting up pipelines with `{targets}`</span>"
     ]
