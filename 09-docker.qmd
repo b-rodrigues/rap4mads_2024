@@ -642,11 +642,14 @@ Now it's your turn to build reproducible pipelines!
 
 ## One last thing
 
-It should be noted that you can also use `{renv}` in combination with Docker. What you could do is
-copy an `{renv}` lockfile into Docker, and restore the packages with `{renv}`. You could then
-push this image, which would contain every package, to Docker Hub, and then provide this image
-to your future users instead. This way, you wouldn’t need to use a base image with frozen CRAN
-repos as we did. That’s up to you.
+It should be noted that you can also use `{renv}` in combination with Docker.
+What you could do is copy an `{renv}` lockfile into Docker, and restore the
+packages with `{renv}`. You could then push this image, which would contain
+every package, to Docker Hub, and then provide this image to your future users
+instead. This way, you wouldn’t need to use a base image with frozen CRAN repos
+as we did. That’s up to you.
+
+If you want an example of this, look [here](https://github.com/b-rodrigues/rpi_docker_rap).
 
 ## Further reading
 
