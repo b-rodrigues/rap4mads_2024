@@ -625,6 +625,7 @@ eaead16dc43b: Pull complete </code></pre>
 <section id="one-last-thing" class="level2" data-number="8.8">
 <h2 data-number="8.8" class="anchored" data-anchor-id="one-last-thing"><span class="header-section-number">8.8</span> One last thing</h2>
 <p>It should be noted that you can also use <code>{renv}</code> in combination with Docker. What you could do is copy an <code>{renv}</code> lockfile into Docker, and restore the packages with <code>{renv}</code>. You could then push this image, which would contain every package, to Docker Hub, and then provide this image to your future users instead. This way, you wouldn’t need to use a base image with frozen CRAN repos as we did. That’s up to you.</p>
+<p>If you want an example of this, look <a href="https://github.com/b-rodrigues/rpi_docker_rap">here</a>.</p>
 </section>
 <section id="further-reading" class="level2" data-number="8.9">
 <h2 data-number="8.9" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">8.9</span> Further reading</h2>

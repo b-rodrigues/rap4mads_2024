@@ -604,7 +604,7 @@
     "href": "09-docker.html#one-last-thing",
     "title": "8  Self-contained RAPs with Docker",
     "section": "8.8 One last thing",
-    "text": "8.8 One last thing\nIt should be noted that you can also use {renv} in combination with Docker. What you could do is copy an {renv} lockfile into Docker, and restore the packages with {renv}. You could then push this image, which would contain every package, to Docker Hub, and then provide this image to your future users instead. This way, you wouldn’t need to use a base image with frozen CRAN repos as we did. That’s up to you.",
+    "text": "8.8 One last thing\nIt should be noted that you can also use {renv} in combination with Docker. What you could do is copy an {renv} lockfile into Docker, and restore the packages with {renv}. You could then push this image, which would contain every package, to Docker Hub, and then provide this image to your future users instead. This way, you wouldn’t need to use a base image with frozen CRAN repos as we did. That’s up to you.\nIf you want an example of this, look here.",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Self-contained RAPs with Docker</span>"
     ]
