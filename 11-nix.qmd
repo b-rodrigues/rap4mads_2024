@@ -252,3 +252,20 @@ another way is instead to use Nix as a build automation tool: this means that
 with only Nix, you can replace a tool such as `{targets}` and another tool for
 dependency management. [This repository](https://github.com/b-rodrigues/nixbat/tree/master)
 contains such an example.
+
+## Conclusion
+
+Nix is a very powerful tool, with a steep learning curve. Check out these resources
+to learn more:
+
+- Official Nix docs: [https://nix.dev/](https://nix.dev/)
+
+- Nix pills: [https://nixos.org/guides/nix-pills/00-preface](https://nixos.org/guides/nix-pills/00-preface)
+
+- INRIA Nix tutorial: [https://nix-tutorial.gitlabpages.inria.fr/nix-tutorial/](https://nix-tutorial.gitlabpages.inria.fr/nix-tutorial/)
+
+- rix's website (check out the Articles section): [https://docs.ropensci.org/rix/](https://docs.ropensci.org/rix/)
+
+- rix's Github: [https://github.com/ropensci/rix](https://github.com/ropensci/rix)
+
+- My blog posts: [https://www.brodrigues.co/tags/nix/](https://www.brodrigues.co/tags/nix/)
