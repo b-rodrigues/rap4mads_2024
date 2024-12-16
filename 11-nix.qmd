@@ -238,3 +238,17 @@ to give read and write rights to the Github Actions bot. You will find the
 outputs of the pipeline in the `targets-run` branch of your repository. See this
 [repository](https://github.com/b-rodrigues/chronicler_targets_pipeline) for an
 example.
+
+## A polyglot environment
+
+A polyglot environment is an environment that supplies several languages, for
+data science that would typically be Python and R. See [this
+example](https://github.com/b-rodrigues/raps_with_py/blob/master/default.nix),
+which outputs a shell with both R and Python packages. It is also possible
+to orchestrate how the languages "talk" to each other using Nix itself. For example
+suppose that you want to generate a Quarto document that needs both R and Python.
+You could of course use dedicated chunks within the Quarto document for this. But
+another way is instead to use Nix as a build automation tool: this means that
+with only Nix, you can replace a tool such as `{targets}` and another tool for
+dependency management. [This repository](https://github.com/b-rodrigues/nixbat/tree/master)
+contains such an example.
