@@ -278,6 +278,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-rix-package" id="toc-the-rix-package" class="nav-link" data-scroll-target="#the-rix-package"><span class="header-section-number">10.6</span> The {rix} package</a></li>
   <li><a href="#running-a-pipeline-with-nix" id="toc-running-a-pipeline-with-nix" class="nav-link" data-scroll-target="#running-a-pipeline-with-nix"><span class="header-section-number">10.7</span> Running a pipeline with Nix</a></li>
   <li><a href="#cicd-with-nix" id="toc-cicd-with-nix" class="nav-link" data-scroll-target="#cicd-with-nix"><span class="header-section-number">10.8</span> CI/CD with Nix</a></li>
+  <li><a href="#a-polyglot-environment" id="toc-a-polyglot-environment" class="nav-link" data-scroll-target="#a-polyglot-environment"><span class="header-section-number">10.9</span> A polyglot environment</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10.10</span> Conclusion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/b-rodrigues/rap4mads_2024/edit/main/11-nix.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -423,6 +425,22 @@ pkgs.mkShell {
 <section id="cicd-with-nix" class="level2" data-number="10.8">
 <h2 data-number="10.8" class="anchored" data-anchor-id="cicd-with-nix"><span class="header-section-number">10.8</span> CI/CD with Nix</h2>
 <p>It is also possible to run a <code>{targets}</code> pipeline on Github Actions quite easily. Run <code>rix::tar_nix_ga()</code> to add the file <code>.github/workflows/run-pipeline.yaml</code> to your project. Now, each time you push changes to your Github repository, the pipeline will be executed. Don’t forget to give read and write rights to the Github Actions bot. You will find the outputs of the pipeline in the <code>targets-run</code> branch of your repository. See this <a href="https://github.com/b-rodrigues/chronicler_targets_pipeline">repository</a> for an example.</p>
+</section>
+<section id="a-polyglot-environment" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="a-polyglot-environment"><span class="header-section-number">10.9</span> A polyglot environment</h2>
+<p>A polyglot environment is an environment that supplies several languages, for data science that would typically be Python and R. See <a href="https://github.com/b-rodrigues/raps_with_py/blob/master/default.nix">this example</a>, which outputs a shell with both R and Python packages. It is also possible to orchestrate how the languages “talk” to each other using Nix itself. For example suppose that you want to generate a Quarto document that needs both R and Python. You could of course use dedicated chunks within the Quarto document for this. But another way is instead to use Nix as a build automation tool: this means that with only Nix, you can replace a tool such as <code>{targets}</code> and another tool for dependency management. <a href="https://github.com/b-rodrigues/nixbat/tree/master">This repository</a> contains such an example.</p>
+</section>
+<section id="conclusion" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">10.10</span> Conclusion</h2>
+<p>Nix is a very powerful tool, with a steep learning curve. Check out these resources to learn more:</p>
+<ul>
+<li><p>Official Nix docs: <a href="https://nix.dev/">https://nix.dev/</a></p></li>
+<li><p>Nix pills: <a href="https://nixos.org/guides/nix-pills/00-preface">https://nixos.org/guides/nix-pills/00-preface</a></p></li>
+<li><p>INRIA Nix tutorial: <a href="https://nix-tutorial.gitlabpages.inria.fr/nix-tutorial/">https://nix-tutorial.gitlabpages.inria.fr/nix-tutorial/</a></p></li>
+<li><p>rix’s website (check out the Articles section): <a href="https://docs.ropensci.org/rix/">https://docs.ropensci.org/rix/</a></p></li>
+<li><p>rix’s Github: <a href="https://github.com/ropensci/rix">https://github.com/ropensci/rix</a></p></li>
+<li><p>My blog posts: <a href="https://www.brodrigues.co/tags/nix/">https://www.brodrigues.co/tags/nix/</a></p></li>
+</ul>
 
 
 </section>

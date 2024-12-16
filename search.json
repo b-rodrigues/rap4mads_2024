@@ -760,6 +760,26 @@
     ]
   },
   {
+    "objectID": "11-nix.html#a-polyglot-environment",
+    "href": "11-nix.html#a-polyglot-environment",
+    "title": "10  Reproducibility with Nix",
+    "section": "10.9 A polyglot environment",
+    "text": "10.9 A polyglot environment\nA polyglot environment is an environment that supplies several languages, for data science that would typically be Python and R. See this example, which outputs a shell with both R and Python packages. It is also possible to orchestrate how the languages “talk” to each other using Nix itself. For example suppose that you want to generate a Quarto document that needs both R and Python. You could of course use dedicated chunks within the Quarto document for this. But another way is instead to use Nix as a build automation tool: this means that with only Nix, you can replace a tool such as {targets} and another tool for dependency management. This repository contains such an example.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Reproducibility with Nix</span>"
+    ]
+  },
+  {
+    "objectID": "11-nix.html#conclusion",
+    "href": "11-nix.html#conclusion",
+    "title": "10  Reproducibility with Nix",
+    "section": "10.10 Conclusion",
+    "text": "10.10 Conclusion\nNix is a very powerful tool, with a steep learning curve. Check out these resources to learn more:\n\nOfficial Nix docs: https://nix.dev/\nNix pills: https://nixos.org/guides/nix-pills/00-preface\nINRIA Nix tutorial: https://nix-tutorial.gitlabpages.inria.fr/nix-tutorial/\nrix’s website (check out the Articles section): https://docs.ropensci.org/rix/\nrix’s Github: https://github.com/ropensci/rix\nMy blog posts: https://www.brodrigues.co/tags/nix/",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Reproducibility with Nix</span>"
+    ]
+  },
+  {
     "objectID": "11-nix.html#footnotes",
     "href": "11-nix.html#footnotes",
     "title": "10  Reproducibility with Nix",
