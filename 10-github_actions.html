@@ -239,7 +239,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">9.1</span> Introduction</a></li>
   <li><a href="#getting-your-repo-ready-for-github-actions" id="toc-getting-your-repo-ready-for-github-actions" class="nav-link" data-scroll-target="#getting-your-repo-ready-for-github-actions"><span class="header-section-number">9.2</span> Getting your repo ready for Github Actions</a></li>
   <li><a href="#building-a-docker-image-and-pushing-it-to-a-registry" id="toc-building-a-docker-image-and-pushing-it-to-a-registry" class="nav-link" data-scroll-target="#building-a-docker-image-and-pushing-it-to-a-registry"><span class="header-section-number">9.3</span> Building a Docker image and pushing it to a registry</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">9.4</span> Further reading</a></li>
+  <li><a href="#running-a-pipeline-straight-from-github-actions" id="toc-running-a-pipeline-straight-from-github-actions" class="nav-link" data-scroll-target="#running-a-pipeline-straight-from-github-actions"><span class="header-section-number">9.4</span> Running a pipeline straight from Github Actions</a></li>
+  <li><a href="#running-unit-tests-on-github-actions" id="toc-running-unit-tests-on-github-actions" class="nav-link" data-scroll-target="#running-unit-tests-on-github-actions"><span class="header-section-number">9.5</span> Running unit tests on Github Actions</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">9.6</span> Further reading</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/b-rodrigues/rap4mads_2024/edit/main/10-github_actions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -328,7 +330,8 @@ jobs:
 <p><video width="640" height="480" controls=""> <source src="img/ga_1.mp4" type="video/mp4"> </video></p>
 </div>
 <p>If we take a look at the commit we just pushed, we see this yellow dot next to the commit name. This means that an action is running. We can then take a look at the output of the job, and see that our commands, defined with the <code>run</code> statements in the workflow file, succeeded and echoed what we asked them.</p>
-<p>So, the next step is running our Docker image and getting back our plots. This is what our workflow file looks like:</p>
+<p>So, the next step is running our Docker image and getting back our plots. This next example can be found in <a href="https://github.com/b-rodrigues/dockerized_pipeline_demo">this repository</a>.</p>
+<p>This is what our workflow file looks like:</p>
 <pre><code>name: Reproducible pipeline
 
 on:
@@ -390,8 +393,65 @@ jobs:
 <h2 data-number="9.3" class="anchored" data-anchor-id="building-a-docker-image-and-pushing-it-to-a-registry"><span class="header-section-number">9.3</span> Building a Docker image and pushing it to a registry</h2>
 <p>It is also possible to build a Docker image and have it made available on an image registry. You can see how this works on this <a href="https://github.com/b-rodrigues/ga_demo">repository</a>. This images can then be used as a base for other RAPs, as in this <a href="https://github.com/b-rodrigues/ga_demo_rap/tree/main">repository</a>. Why do this? Well because of “separation of concerns”. You could have a repository which builds in image containing your development environment: this could be an image with a specific version of R and R packages. And then have as many repositories as projects that run RAPs using that development environment image as a basis. Simply add the project-specific packages that you need for each project.</p>
 </section>
-<section id="further-reading" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">9.4</span> Further reading</h2>
+<section id="running-a-pipeline-straight-from-github-actions" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="running-a-pipeline-straight-from-github-actions"><span class="header-section-number">9.4</span> Running a pipeline straight from Github Actions</h2>
+<p>Using Docker on Github Actions has the advantage that you can use the same image to develop locally on your computer, and then also on CI. However, you could also run the pipeline straight from a Github Actions runner, but it’ll take some effort to set up the environment on CI. Take a look at <a href="https://github.com/rap4all/housing/tree/gitops-pipeline">the example from this repository</a>.</p>
+<p>The yaml file used in this action (which you can find <a href="https://github.com/rap4all/housing/blob/gitops-pipeline/.github/workflows/targets.yaml">here</a>) was generated by running <code>targets::tar_github_actions()</code> and was then modified further, mostly to add the required development libraries to compile the needed R packages (under the <code>Install Linux system dependencies</code> step).</p>
+<p>This action takes advantage of the included Github Actions cache to backup the targets from the pipeline, so they can also get skipped with subsequent runs:</p>
+<div style="text-align:center;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="img/tar_github_actions_skip.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>This can also be achieved with Docker by mounting volumes, but requires more manual setup.</p>
+<p>Another difference with Docker is that the outputs are not saved as an artifact, but instead get pushed to the <code>targets-runs</code> branch:</p>
+<div style="text-align:center;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="img/tar_github_actions_targets-runs.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="running-unit-tests-on-github-actions" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="running-unit-tests-on-github-actions"><span class="header-section-number">9.5</span> Running unit tests on Github Actions</h2>
+<p>Setting up your project as a package (or at least, the parts of your project that can be reused for others) as a package also has the advantage that it becomes very easy to run unit tests on CI. See for example the <code>{myPackage}</code> package that we developed together, in particular <a href="https://github.com/b-rodrigues/myPackage/blob/main/.github/workflows/rcmdcheck.yaml">this file</a>. This action runs on each push and pull request on Windows, Ubuntu and macOS:</p>
+<pre><code>on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  rcmdcheck:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]</code></pre>
+<p>Several steps are executed, all using pre-defined actions from the <code>r-lib</code> project:</p>
+<pre><code>    steps:
+    - uses: actions/checkout@v4
+    - uses: r-lib/actions/setup-r@v2
+    - uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        extra-packages: any::rcmdcheck
+        needs: check
+    - uses: r-lib/actions/check-r-package@v2</code></pre>
+<p>An action such as <code>r-lib/actions/setup-r@v2</code> will install R on any of the supported operating systems without requiring any configuration from you. If you didn’t use such an action, you would need to define three separate actions: one that would be executed on Windows, on Ubuntu and on macOS. Each of these operating-specific actions would install R in their operating-specific way.</p>
+<p>Check out the workflow results to see how the package could be improved <a href="https://github.com/b-rodrigues/myPackage/actions/runs/12348361696">here</a>.</p>
+</section>
+<section id="further-reading" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">9.6</span> Further reading</h2>
 <ul>
 <li>http://haines-lab.com/post/2022-01-23-automating-computational-reproducibility-with-r-using-renv-docker-and-github-actions/</li>
 <li>https://orchid00.github.io/actions_sandbox/</li>
