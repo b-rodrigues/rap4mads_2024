@@ -1,31 +1,52 @@
 let
+
  pkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/e1b70fb06158edd5dde073031fb367b6e709cf3f.tar.gz") {};
+
  rpkgs = builtins.attrValues {
   inherit (pkgs.rPackages) quarto Ecdat devtools janitor plm pwt9 rio targets tarchetypes testthat tidyverse usethis formatR renv visNetwork;
-};
-  tex = (pkgs.texlive.combine {
+ };
+
+ tex = (pkgs.texlive.combine {
   inherit (pkgs.texlive) scheme-small amsmath framed fvextra environ fontawesome5 orcidlink pdfcol tcolorbox tikzfill;
-});
+ });
+
  system_packages = builtins.attrValues {
   inherit (pkgs) R glibcLocalesUtf8 quarto;
-};
+ };
 
-  myPackage = [(pkgs.rPackages.buildRPackage {
-  name = "myPackage";
-  src = pkgs.fetchgit {
-    url = "https://github.com/b-rodrigues/myPackage";
-    branchName = "master";
-    rev = "e9d9129de3047c1ecce26d09dff429ec078d4dae";
-    sha256 = "sha256-u/tIo9L+S12ssGNlQu7AVHG5W5OTpXZ+rHn1Pz6RIKs=";
+ github_pkgs = [
+   (pkgs.rPackages.buildRPackage {
+     name = "rix";
+     src = pkgs.fetchgit {
+       url = "https://github.com/ropensci/rix/";
+       rev = "09cdc9a4fbf026a0865e138455159ddf0315c2e6";
+       sha256 = "sha256-U9+wMbeA84oeL+ZasTFog/4C3awc1tBpzFetxsozESo=";
+     };
+     propagatedBuildInputs = builtins.attrValues {
+       inherit (pkgs.rPackages) 
+         codetools
+         curl
+         jsonlite
+         sys;
+     };
+   })
+
+  (pkgs.rPackages.buildRPackage {
+    name = "myPackage";
+    src = pkgs.fetchgit {
+      url = "https://github.com/b-rodrigues/myPackage";
+      branchName = "master";
+      rev = "e9d9129de3047c1ecce26d09dff429ec078d4dae";
+      sha256 = "sha256-u/tIo9L+S12ssGNlQu7AVHG5W5OTpXZ+rHn1Pz6RIKs=";
     };
-propagatedBuildInputs = builtins.attrValues {
-        inherit (pkgs.rPackages) 
-          dplyr
-          janitor
-          rlang;
-      };
-  }) 
-  ];
+    propagatedBuildInputs = builtins.attrValues {
+      inherit (pkgs.rPackages) 
+        dplyr
+        janitor
+        rlang;
+        };
+    })
+ ];
 
   in
   pkgs.mkShell {
@@ -37,6 +58,6 @@ propagatedBuildInputs = builtins.attrValues {
     LC_PAPER = "en_US.UTF-8";
     LC_MEASUREMENT = "en_US.UTF-8";
 
-    buildInputs = [ rpkgs tex system_packages myPackage ];
+    buildInputs = [ rpkgs tex system_packages github_pkgs ];
       
   }
